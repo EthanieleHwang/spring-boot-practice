@@ -1,6 +1,7 @@
 package com.learning.myfirstwebapp.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -16,4 +17,10 @@ public class HelloController {
     public String greetSomeone(){
         return "Greetings,brave explorer!";
     }
+
+    @GetMapping("/greet/{name}")
+    public String greetSomeone(@PathVariable String name){
+        return "Hello, "+name+"!";
+    }
+
 }
