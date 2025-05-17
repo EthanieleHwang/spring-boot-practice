@@ -19,6 +19,7 @@ public class UserController {
         System.out.println("Username: "+ userToCreate.getUsername());
         System.out.println("Email: "+ userToCreate.getEmail());
         System.out.println("Age: "+ userToCreate.getAge());
+        System.out.println("Date:"+ userToCreate.getCreatedAt());
 
         //2.
         userToCreate.setId(System.currentTimeMillis() % 1000);

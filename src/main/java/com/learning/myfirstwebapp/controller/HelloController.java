@@ -1,5 +1,7 @@
 package com.learning.myfirstwebapp.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
 
     @GetMapping("/hello")
-    public String sayHello() {
+        public ResponseEntity<String> sayHello() {
         System.out.println("Hello Controller: sayHello() method was called");
-        return "Hello Spring Boot! This is my first web api";
+        return new ResponseEntity<String>("\"Hello Spring Boot! This is my first web api\"", HttpStatus.OK );
     }
 
     @GetMapping("/greet")

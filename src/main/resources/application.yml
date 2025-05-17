@@ -1,0 +1,9 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /mybootapp
+spring:
+  application:
+    name: MyBootApp
+  jackson:
+    date-format: yyyy-MM-dd
