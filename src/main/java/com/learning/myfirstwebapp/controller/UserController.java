@@ -1,6 +1,8 @@
 package com.learning.myfirstwebapp.controller;
 
+import com.learning.myfirstwebapp.exception.BusinessException;
 import com.learning.myfirstwebapp.model.User;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +14,7 @@ import java.util.Map;
 public class UserController {
     //1.
     @PostMapping("/create")
-    public ResponseEntity<User> createUser(@RequestBody User userToCreate) {
+    public ResponseEntity<User> createUser(@Valid @RequestBody User userToCreate) {
 
         // 1.@RequestBody
         System.out.println("Received user via @RequestBody:" );
@@ -66,5 +68,22 @@ public class UserController {
         if(user.getId() == null) user.setId(1L); //给个默认 ID
         return user;
     }
-    
+
+    @GetMapping("/test-business-error")
+    public String testBusinessError() {
+        System.out.println("UserController:simulating a business error...");
+        if(true) {
+            throw new BusinessException("This is a custom business rule violation!");
+        }
+        return "This will not be reached";
+    }
+    @GetMapping("/test-runtime-error")
+    public String testRuntimeError() {
+        System.out.println("UserController:Simulating a runtime error...");
+        String str= null;
+        System.out.println(str.length()); //会抛出空指针异常NullPointerException
+
+        return "This will not be reached";
+    }
+
 }
